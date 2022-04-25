@@ -1,4 +1,5 @@
 from utils.apiResponse import ApiResponse
+import responses
 import utils
 import keras.backend as K
 from datetime import datetime as dt
@@ -28,18 +29,22 @@ class MalariaDetection:
         model = load_model(model_name)
         return model
     def translate_malaria(preds):
-        res = ApiResponse()
-        y_proba_Class0 = preds.flatten().tolist()[0] * 100
-        y_proba_Class1 = 100.0-y_proba_Class0
+        res = responses(False,"Error occur")
+        #res = ApiResponse()
+        try:
+            y_proba_Class0 = preds.flatten().tolist()[0] * 100
+            y_proba_Class1 = 100.0-y_proba_Class0
 
-        para_prob="Probability of the cell image to be Parasitized: {:.2f}%".format(y_proba_Class1)
-        unifected_prob="Probability of the cell image to be Uninfected: {:.2f}%".format(y_proba_Class0)
+            para_prob="Probability of the cell image to be Parasitized: {:.2f}%".format(y_proba_Class1)
+            unifected_prob="Probability of the cell image to be Uninfected: {:.2f}%".format(y_proba_Class0)
 
-        total = para_prob + " " + unifected_prob
-        total = [para_prob,unifected_prob]
+            total = para_prob + " " + unifected_prob
+            total = [para_prob,unifected_prob]
 
-        if (y_proba_Class1 > y_proba_Class0):
-            return res.update(True,"Inference: The cell image shows strong evidence of Malaria.",total)
-        else:
-            return res.update(True,"Inference: The cell image shows no evidence of Malaria.",total)
+            if (y_proba_Class1 > y_proba_Class0):
+                return res.update(True,"Inference: The cell image shows strong evidence of Malaria.",total)
+            else:
+                return res.update(True,"Inference: The cell image shows no evidence of Malaria.",total)
+        except Exception as ex:
+            return res
     pass
