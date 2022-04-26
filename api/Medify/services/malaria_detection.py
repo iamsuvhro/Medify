@@ -1,4 +1,4 @@
-from utils.apiResponse import ApiResponse
+#from utils.apiResponse import ApiResponse
 import responses
 import utils
 import keras.backend as K
@@ -21,7 +21,7 @@ from keras.preprocessing.image import img_to_array
 from keras.applications.imagenet_utils import decode_predictions
 
 
-class MalariaDetection:
+class MalariaDetectionServices:
     """Service for malaria detection"""
  
     def load_model_():
