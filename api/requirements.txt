@@ -1,0 +1,12 @@
+Django
+djangorestframework==3.13.1
+django-cors-headers
+httplib2==0.14.0
+imageio==2.17.0
+keras==2.8.0
+numpy
+Pillow
+PyYAML
+responses==0.18.0
+utils
+gunicorn==20.1.0

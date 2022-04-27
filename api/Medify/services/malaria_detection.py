@@ -6,7 +6,6 @@ import keras.backend as K
 from datetime import datetime as dt
 import numpy as np
 import uuid
-from PIL import Image
 import os
 from keras.models import load_model
 import imageio
