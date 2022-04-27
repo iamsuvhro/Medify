@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  medify_backend:
+    build:
+      context: ./api/
+    command: gunicorn app.wsgi --bind localhost:8000
+    ports:
+      - "8000:8000"
+
+  medify_frontend:
+    build:
+      context: ./ui/
+    volumes:
+      - ui_build:/ui/build
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - ui_build:/var/www/ui
+    depends_on:
+      - medify_backend
+      - medify_frontend
+volumes:
+  ui_build:

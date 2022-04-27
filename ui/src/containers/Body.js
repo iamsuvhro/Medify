@@ -41,7 +41,7 @@ export default function Body(props) {
                     <div className="col-md-8">
                         <form>
                                 <div className="mb-3" Style="margin-top:100px; margin-right:40px;">
-                                    <label htmlFor="formFile" className="form-label" Style="font-size:20px;" >Upload your file upload</label>
+                                    <label htmlFor="formFile" className="form-label" Style="font-size:20px;" >Upload your image file upload</label>
                                     <input className="form-control" type="file" id="formFile" onChange={onChangeImageHandler}/>
                                 </div>
                                 <button Style="padding-left:40px; padding-right:40px; font-size:20px;"className='btn btn-dark' type='submit' onClick={() => upload()}>Upload</button>
